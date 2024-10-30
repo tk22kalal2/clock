@@ -22,6 +22,7 @@
                 <input type="number" id="secondsInput" placeholder="SS" min="0" max="59" />
             </div>
             <button onclick="startCountdown()">Start Timer</button>
+            <button onclick="resetTimer()">Reset</button>
             <p id="countdownDisplay"></p>
         </div>
         <div class="break-timer">
@@ -34,6 +35,13 @@
                 <input type="number" id="breakSecondsInput" placeholder="SS" min="0" max="59" />
             </div>
         </div>
+        <div class="sound-control">
+            <label>
+                <input type="checkbox" id="soundToggle" checked />
+                Enable Sound
+            </label>
+        </div>
+        <audio id="alertSound" src="alert.mp3"></audio> <!-- Replace with your sound file -->
     </div>
     <script src="script.js"></script>
 </body>
