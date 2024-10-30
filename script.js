@@ -12,32 +12,58 @@ setInterval(updateClock, 1000);
 
 // Countdown Timer
 let countdownInterval;
+let isOnBreak = false;
+let initialCountdownSeconds;
+
 function startCountdown() {
     clearInterval(countdownInterval);
+    isOnBreak = false;
 
-    // Get hours, minutes, and seconds from input fields
-    let hours = parseInt(document.getElementById("hoursInput").value) || 0;
-    let minutes = parseInt(document.getElementById("minutesInput").value) || 0;
-    let seconds = parseInt(document.getElementById("secondsInput").value) || 0;
+    // Get countdown hours, minutes, and seconds
+    const hours = parseInt(document.getElementById("hoursInput").value) || 0;
+    const minutes = parseInt(document.getElementById("minutesInput").value) || 0;
+    const seconds = parseInt(document.getElementById("secondsInput").value) || 0;
 
-    // Convert total time to seconds
-    let countdownSeconds = hours * 3600 + minutes * 60 + seconds;
+    // Get break time in hours, minutes, and seconds
+    const breakHours = parseInt(document.getElementById("breakHoursInput").value) || 0;
+    const breakMinutes = parseInt(document.getElementById("breakMinutesInput").value) || 0;
+    const breakSeconds = parseInt(document.getElementById("breakSecondsInput").value) || 0;
 
+    // Convert times to seconds
+    initialCountdownSeconds = hours * 3600 + minutes * 60 + seconds;
+    let breakTimeSeconds = breakHours * 3600 + breakMinutes * 60 + breakSeconds;
+
+    // Function to update countdown
     function updateCountdown() {
-        if (countdownSeconds > 0) {
-            countdownSeconds--;
+        if (!isOnBreak && initialCountdownSeconds > 0) {
+            initialCountdownSeconds--;
+            displayTime(initialCountdownSeconds, "countdownDisplay");
 
-            // Convert seconds back to hours, minutes, and seconds
-            let hrs = String(Math.floor(countdownSeconds / 3600)).padStart(2, '0');
-            let mins = String(Math.floor((countdownSeconds % 3600) / 60)).padStart(2, '0');
-            let secs = String(countdownSeconds % 60).padStart(2, '0');
+            if (initialCountdownSeconds === 0 && breakTimeSeconds > 0) {
+                isOnBreak = true;
+                initialCountdownSeconds = breakTimeSeconds;
+                document.getElementById("countdownDisplay").textContent = "Break time!";
+            }
+        } else if (isOnBreak && initialCountdownSeconds > 0) {
+            initialCountdownSeconds--;
+            displayTime(initialCountdownSeconds, "countdownDisplay");
 
-            document.getElementById("countdownDisplay").textContent = `${hrs}:${mins}:${secs}`;
-        } else {
-            clearInterval(countdownInterval);
-            document.getElementById("countdownDisplay").textContent = "Time's up!";
+            if (initialCountdownSeconds === 0) {
+                isOnBreak = false;
+                initialCountdownSeconds = hours * 3600 + minutes * 60 + seconds;
+                startCountdown();
+            }
         }
     }
 
+    // Start countdown interval
     countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Function to display time in HH:MM:SS format
+function displayTime(seconds, elementId) {
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const secs = String(seconds % 60).padStart(2, '0');
+    document.getElementById(elementId).textContent = `${hrs}:${mins}:${secs}`;
 }
