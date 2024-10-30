@@ -39,16 +39,20 @@ function startCountdown() {
             initialCountdownSeconds--;
             displayTime(initialCountdownSeconds, "countdownDisplay");
 
-            if (initialCountdownSeconds === 0 && breakTimeSeconds > 0) {
-                isOnBreak = true;
-                initialCountdownSeconds = breakTimeSeconds;
-                document.getElementById("countdownDisplay").textContent = "Break time!";
+            if (initialCountdownSeconds === 0) {
+                playSound(); // Play sound when countdown ends
+                if (breakTimeSeconds > 0) {
+                    isOnBreak = true;
+                    initialCountdownSeconds = breakTimeSeconds;
+                    document.getElementById("countdownDisplay").textContent = "Break time!";
+                }
             }
         } else if (isOnBreak && initialCountdownSeconds > 0) {
             initialCountdownSeconds--;
             displayTime(initialCountdownSeconds, "countdownDisplay");
 
             if (initialCountdownSeconds === 0) {
+                playSound(); // Play sound when break time ends
                 isOnBreak = false;
                 initialCountdownSeconds = hours * 3600 + minutes * 60 + seconds;
                 startCountdown();
@@ -66,4 +70,28 @@ function displayTime(seconds, elementId) {
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
     const secs = String(seconds % 60).padStart(2, '0');
     document.getElementById(elementId).textContent = `${hrs}:${mins}:${secs}`;
+}
+
+// Play sound function
+function playSound() {
+    const soundToggle = document.getElementById("soundToggle").checked;
+    if (soundToggle) {
+        const alertSound = document.getElementById("alertSound");
+        alertSound.play();
+    }
+}
+
+// Reset Function
+function resetTimer() {
+    clearInterval(countdownInterval);
+    isOnBreak = false;
+    document.getElementById("countdownDisplay").textContent = "";
+
+    // Clear all input fields
+    document.getElementById("hoursInput").value = "";
+    document.getElementById("minutesInput").value = "";
+    document.getElementById("secondsInput").value = "";
+    document.getElementById("breakHoursInput").value = "";
+    document.getElementById("breakMinutesInput").value = "";
+    document.getElementById("breakSecondsInput").value = "";
 }
