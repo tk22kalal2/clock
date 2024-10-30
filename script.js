@@ -14,12 +14,25 @@ setInterval(updateClock, 1000);
 let countdownInterval;
 function startCountdown() {
     clearInterval(countdownInterval);
-    let countdownSeconds = parseInt(document.getElementById("countdownInput").value);
+
+    // Get hours, minutes, and seconds from input fields
+    let hours = parseInt(document.getElementById("hoursInput").value) || 0;
+    let minutes = parseInt(document.getElementById("minutesInput").value) || 0;
+    let seconds = parseInt(document.getElementById("secondsInput").value) || 0;
+
+    // Convert total time to seconds
+    let countdownSeconds = hours * 3600 + minutes * 60 + seconds;
 
     function updateCountdown() {
         if (countdownSeconds > 0) {
             countdownSeconds--;
-            document.getElementById("countdownDisplay").textContent = countdownSeconds + "s";
+
+            // Convert seconds back to hours, minutes, and seconds
+            let hrs = String(Math.floor(countdownSeconds / 3600)).padStart(2, '0');
+            let mins = String(Math.floor((countdownSeconds % 3600) / 60)).padStart(2, '0');
+            let secs = String(countdownSeconds % 60).padStart(2, '0');
+
+            document.getElementById("countdownDisplay").textContent = `${hrs}:${mins}:${secs}`;
         } else {
             clearInterval(countdownInterval);
             document.getElementById("countdownDisplay").textContent = "Time's up!";
