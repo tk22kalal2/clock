@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock & Reverse Timer</title>
+    <title>Digital Clock & Reverse Timer with Break</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +23,16 @@
             </div>
             <button onclick="startCountdown()">Start Timer</button>
             <p id="countdownDisplay"></p>
+        </div>
+        <div class="break-timer">
+            <h2>Set Break Time</h2>
+            <div class="input-group">
+                <input type="number" id="breakHoursInput" placeholder="HH" min="0" max="99" />
+                <span>:</span>
+                <input type="number" id="breakMinutesInput" placeholder="MM" min="0" max="59" />
+                <span>:</span>
+                <input type="number" id="breakSecondsInput" placeholder="SS" min="0" max="59" />
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
