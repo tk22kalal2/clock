@@ -37,12 +37,20 @@ h2 {
     margin-top: 10px;
 }
 
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
 input {
     padding: 8px;
-    margin-top: 10px;
+    width: 60px;
+    text-align: center;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 80%;
+    font-size: 1em;
 }
 
 button {
