@@ -78,7 +78,16 @@ function playSound() {
     if (soundToggle) {
         const alertSound = document.getElementById("alertSound");
         alertSound.play();
+        document.getElementById("muteButton").style.display = "inline-block"; // Show mute button
     }
+}
+
+// Mute sound function
+function muteSound() {
+    const alertSound = document.getElementById("alertSound");
+    alertSound.pause();
+    alertSound.currentTime = 0; // Reset sound to the beginning
+    document.getElementById("muteButton").style.display = "none"; // Hide mute button
 }
 
 // Reset Function
@@ -94,4 +103,7 @@ function resetTimer() {
     document.getElementById("breakHoursInput").value = "";
     document.getElementById("breakMinutesInput").value = "";
     document.getElementById("breakSecondsInput").value = "";
+
+    // Reset and hide mute button
+    muteSound();
 }
