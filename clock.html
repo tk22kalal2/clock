@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock & Reverse Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <h2>Current Time</h2>
+            <p id="digitalClock"></p>
+        </div>
+        <div class="timer">
+            <h2>Reverse Timer</h2>
+            <input type="number" id="countdownInput" placeholder="Enter seconds" />
+            <button onclick="startCountdown()">Start Timer</button>
+            <p id="countdownDisplay"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
