@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Clock & Reverse Timer with Break</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,18 +22,32 @@
         </div>
         <div class="timer">
             <h2>Reverse Timer</h2>
-              <ul>
+            <ul>
                 <li>
-                  <a href="https://telegram.me/mynextpulseX_bot?start=Z2V0LTIwMTUwNzA5Nzc3NTgxOTcw" target="_blank">
-                    Reverse Timer 1
-                  </a>
+                    <a href="https://telegram.me/mynextpulseX_bot?start=Z2V0LTIwMTUwNzA5Nzc3NTgxOTcw" target="_blank">
+                        Reverse Timer 1
+                    </a>
                 </li>
                 <li>
-                  <a href="https://mynext4-500eaf7b8c17.herokuapp.com/watch/327761/%3Ccode%3E1.+Developmental+Timeline+atf.mp4%3C%2Fcode%3E?hash=AgADTw" target="_blank">
-                    Reverse Timer 2
-                  </a>
+                    <a href="https://mynext4-500eaf7b8c17.herokuapp.com/watch/327761/%3Ccode%3E1.+Developmental+Timeline+atf.mp4%3C%2Fcode%3E?hash=AgADTw" target="_blank">
+                        Reverse Timer 2
+                    </a>
                 </li>
-              </ul>
+            </ul>
+            <!-- Button to Display Reverse Timer 3 -->
+            <button onclick="embedReverseTimer3()">Show Reverse Timer 3</button>
+
+            <!-- Embed Area for Reverse Timer 3 -->
+            <iframe id="reverseTimer3Frame" style="display: none;"></iframe>
+
+            <script>
+                function embedReverseTimer3() {
+                    const iframe = document.getElementById("reverseTimer3Frame");
+                    iframe.src = "https://mynext4-500eaf7b8c17.herokuapp.com/watch/327761/%3Ccode%3E1.+Developmental+Timeline+atf.mp4%3C%2Fcode%3E?hash=AgADTw";
+                    iframe.style.display = "block"; // Show the iframe
+                }
+            </script>
+
             <div class="input-group">
                 <input type="number" id="hoursInput" placeholder="HH" min="0" max="99" />
                 <span>:</span>
