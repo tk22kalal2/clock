@@ -12,6 +12,24 @@
             border: none;
             margin-top: 20px;
         }
+
+        .tg-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #0088cc; /* Telegram Blue */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tg-button:hover {
+            background-color: #006699;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +43,7 @@
             <ul>
                 <li>
                     <a href="https://telegram.me/mynextpulseX_bot?start=Z2V0LTIwMTUwNzA5Nzc3NTgxOTcw" target="_blank">
-                        Reverse Timer 1
+                        Reverse Timer 1 (Open in Browser)
                     </a>
                 </li>
                 <li>
@@ -34,8 +52,10 @@
                     </a>
                 </li>
             </ul>
-            <!-- Button to Display Reverse Timer 3 -->
-            <button onclick="embedReverseTimer3()">Show Reverse Timer 3</button>
+            <!-- tg:// link to open Telegram bot directly -->
+            <a href="tg://resolve?domain=mynextpulseX_bot&start=Z2V0LTIwMTUwNzA5Nzc3NTgxOTcw" class="tg-button">
+                Open Reverse Timer 1 in Telegram App
+            </a>
 
             <!-- Embed Area for Reverse Timer 3 -->
             <iframe id="reverseTimer3Frame" style="display: none;"></iframe>
